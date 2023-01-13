@@ -14,10 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.pink,
-        // accentColor: Colors.amber,
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -35,9 +35,10 @@ class MyApp extends StatelessWidget {
         AppRoutes.categoryMeals: ((context) => const CategoryMeals()),
         AppRoutes.mealDetails: ((context) => const MealDetailScreen()),
       },
-      onGenerateRoute: ((settings) {}),
-      onGenerateTitle: ((settings) {
-        
+      onUnknownRoute: ((settings) {
+        return MaterialPageRoute(
+          builder: (context) => const CategoriesScreen(),
+        );
       }),
     );
   }
