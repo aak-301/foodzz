@@ -22,7 +22,7 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: onTap(),
+      onTap: () => onTap(),
     );
   }
 
@@ -51,7 +51,7 @@ class MainDrawer extends StatelessWidget {
             title: 'Meals',
             icon: Icons.restaurant,
             onTap: () {
-              Navigator.of(context).popAndPushNamed('/');
+              Navigator.of(context).pushReplacementNamed(AppRoutes.home);
             }),
         buildListTile(
             title: 'Filters',
