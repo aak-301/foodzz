@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:foodzz/constants/constant.dart';
 import 'package:foodzz/screens/categories.dart';
 import 'package:foodzz/screens/category_meals.dart';
+import 'package:foodzz/screens/filters.dart';
 import 'package:foodzz/screens/meal_detail.dart';
+import 'package:foodzz/screens/tabs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
+        primaryColor: Colors.pink,
         primarySwatch: Colors.pink,
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
@@ -31,9 +33,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: AppRoutes.home,
       routes: {
-        AppRoutes.home: (context) => const CategoriesScreen(),
+        AppRoutes.home: (context) => const TabsScreen(),
         AppRoutes.categoryMeals: ((context) => const CategoryMeals()),
         AppRoutes.mealDetails: ((context) => const MealDetailScreen()),
+        AppRoutes.filters: ((context) => const FiltersScreen()),
       },
       onUnknownRoute: ((settings) {
         return MaterialPageRoute(
