@@ -4,15 +4,17 @@ import 'package:foodzz/models/meal.dart';
 import '../constants/constant.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem(
-      {super.key,
-      required this.title,
-      required this.color,
-      required this.id,
-      required this.complexity,
-      required this.imgUrl,
-      required this.duration,
-      required this.affordability});
+  const MealItem({
+    super.key,
+    required this.title,
+    required this.color,
+    required this.id,
+    required this.complexity,
+    required this.imgUrl,
+    required this.duration,
+    required this.affordability,
+    required this.removeItem,
+  });
 
   final String title;
   final Color color;
@@ -21,6 +23,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
   String get complexityText {
     switch (complexity) {
@@ -49,8 +52,17 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context)
-        .pushNamed(AppRoutes.mealDetails, arguments: {'id': id,'color':color});
+    Navigator.of(context).pushNamed(
+      AppRoutes.mealDetails,
+      arguments: {
+        'id': id,
+        'color': color,
+      },
+    ).then((result) {
+      if (result != null) {
+        removeItem(result);
+      }
+    });
   }
 
   @override
