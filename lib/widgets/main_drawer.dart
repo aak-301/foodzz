@@ -57,7 +57,7 @@ class MainDrawer extends StatelessWidget {
             title: 'Filters',
             icon: Icons.settings,
             onTap: () {
-              Navigator.of(context).popAndPushNamed(AppRoutes.filters);
+              Navigator.of(context).pushReplacementNamed(AppRoutes.filters);
             }),
       ]),
     );
