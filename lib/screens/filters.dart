@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:foodzz/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatelessWidget {
@@ -10,9 +7,9 @@ class FiltersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Your Filters')),
-      drawer: MainDrawer(),
-      body: Center(
+      appBar: AppBar(title: const Text('Your Filters')),
+      drawer: const MainDrawer(),
+      body: const Center(
         child: Text("Filters"),
       ),
     );
