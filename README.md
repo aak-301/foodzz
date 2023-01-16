@@ -1,6 +1,4 @@
-# foodzz
-
-Foodzz App
+# Foodzz App
 
 ## Getting Started
 
