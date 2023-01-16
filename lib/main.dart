@@ -52,7 +52,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _toggleFavorite(String mealId) {
-    print(mealId);
     final exstingIndex = _favoriteMeals.indexWhere((meal) => meal.id == mealId);
     if (exstingIndex >= 0) {
       setState(() {
@@ -65,6 +64,10 @@ class _MyAppState extends State<MyApp> {
         );
       });
     }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -93,6 +96,7 @@ class _MyAppState extends State<MyApp> {
             )),
         AppRoutes.mealDetails: ((context) => MealDetailScreen(
               toggleFav: _toggleFavorite,
+              mealFavorite: _isMealFavorite,
             )),
         AppRoutes.filters: ((context) =>
             FiltersScreen(currentFilters: _filters, saveFilters: _setFilters)),
