@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
     'vegetarian': false
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -50,6 +51,22 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _toggleFavorite(String mealId) {
+    print(mealId);
+    final exstingIndex = _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (exstingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(exstingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(
+          DUMMY_MEALS.firstWhere((meal) => meal.id == mealId),
+        );
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -70,13 +87,15 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: AppRoutes.home,
       routes: {
-        AppRoutes.home: (context) => const TabsScreen(),
+        AppRoutes.home: (context) => TabsScreen(favMeals: _favoriteMeals),
         AppRoutes.categoryMeals: ((context) => CategoryMeals(
               availableMeals: _availableMeals,
             )),
-        AppRoutes.mealDetails: ((context) => const MealDetailScreen()),
+        AppRoutes.mealDetails: ((context) => MealDetailScreen(
+              toggleFav: _toggleFavorite,
+            )),
         AppRoutes.filters: ((context) =>
-            FiltersScreen(currentFilters: _filters,saveFilters: _setFilters)),
+            FiltersScreen(currentFilters: _filters, saveFilters: _setFilters)),
       },
       onUnknownRoute: ((settings) {
         return MaterialPageRoute(

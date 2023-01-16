@@ -3,7 +3,9 @@ import 'package:foodzz/constants/theme.dart';
 import 'package:foodzz/dummy_data/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({super.key});
+  const MealDetailScreen({super.key, required this.toggleFav});
+
+  final Function toggleFav;
 
   Widget buildSectionTitle(BuildContext ctx, String text) {
     return Card(
@@ -91,10 +93,8 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(id);
-        },
+        child: const Icon(Icons.favorite),
+        onPressed: toggleFav,
       ),
     );
   }
